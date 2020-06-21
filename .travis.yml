@@ -22,13 +22,12 @@ after_script:
   - git config user.email "wenhao0714@gmail.com"
   - git add .
   - git commit -m "Travis CI Auto Builder..."
-  - git push origin ${PAGES_BRANCH}
+  - git push origin master
 
 branches:
   only:
-    - master
+    - hexo
 env:
  global:
    - GH_REF: https://github.com/27392/27392.github.io.git
    git clone https://${GITHUB_TOKEN}@github.com/27392/27392.github.io.git
-   - PAGES_BRANCH: gh-pages
