@@ -18,7 +18,7 @@ script:
 
 after_script:
   - mv 27392/27392.github.io/public/ ./public/
-  - mv 27392/27392.github.io/public/CNAME ./public/CNAME
+  - mv 27392/27392.github.io/CNAME ./public/CNAME
   - cd ./public
   - git init
   - git config user.name "LiwenHao"
