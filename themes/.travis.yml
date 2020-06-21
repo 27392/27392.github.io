@@ -1,0 +1,34 @@
+language: node_js
+
+node_js: stable
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+    - npm install hexo-cli -g
+
+install:
+  - npm install
+
+script:
+  - hexo clean
+  - hexo g
+
+after_script:
+  - cd public
+  - git config user.name "LiwenHao"
+  - git config user.email "wenhao0714@gmail.com"
+  - git add .
+  - git commit -m "Travis CI Auto Builder..."
+  - git push origin ${PAGES_BRANCH}
+
+branches:
+  only:
+    - master
+env:
+ global:
+   - GH_REF: https://github.com/27392/27392.github.io.git
+   git clone https://${GITHUB_TOKEN}@github.com/27392/27392.github.io.git
+   - PAGES_BRANCH: ph-pages
