@@ -17,17 +17,16 @@ script:
   - hexo g
 
 after_script:
-  - cd ./public/
-  - ls
+  - cd ./public
   - git config user.name "LiwenHao"
   - git config user.email "wenhao0714@gmail.com"
   - git add .
   - git commit -m "Travis CI Auto Builder..."
-  - git push --force --quiet ${GH_REF} master:master
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
 
 branches:
   only:
     - hexo
 env:
  global:
-   - GH_REF: https://${GITHUB_TOKEN}@github.com/27392/27392.github.io.git
+   - GH_REF: github.com/27392/27392.github.io.git
