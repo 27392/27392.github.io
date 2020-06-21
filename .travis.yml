@@ -17,7 +17,9 @@ script:
   - hexo g
 
 after_script:
+  - mv 27392/27392.github.io/public/ ./public/
   - cd ./public
+  - git init
   - git config user.name "LiwenHao"
   - git config user.email "wenhao0714@gmail.com"
   - git add .
