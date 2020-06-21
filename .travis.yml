@@ -17,8 +17,7 @@ script:
   - hexo g
 
 after_script:
-  - mv /public/ ./public/
-  - mv /CNAME ./public/CNAME
+  - cp CNAME ./public/CNAME
   - cd ./public
   - git init
   - git config user.name "LiwenHao"
