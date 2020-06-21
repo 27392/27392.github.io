@@ -31,4 +31,4 @@ env:
  global:
    - GH_REF: https://github.com/27392/27392.github.io.git
    git clone https://${GITHUB_TOKEN}@github.com/27392/27392.github.io.git
-   - PAGES_BRANCH: ph-pages
+   - PAGES_BRANCH: gh-pages
