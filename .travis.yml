@@ -22,7 +22,7 @@ after_script:
   - git config user.email "wenhao0714@gmail.com"
   - git add .
   - git commit -m "Travis CI Auto Builder..."
-  - git push origin master
+  - git push --force --quiet ${GH_REF}
 
 branches:
   only:
