@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>test | Hexo</title>
+  <meta name="description" content="Java 核心技术 卷I - 第九章Java集合框架  主要接口在上面可以看到两个接口Collection和Map CollectionCollection接口它包含了集合的基本操作和属性 主要有三个分支  List(有序集合) Set(不包含重复元素的集合) Queue(队列)  Map而Map接口则是映射(映射用来存放键&#x2F;值对) 抽象类 (Abstract…) AbstractCollecti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="test">
+<meta property="og:url" content="http://yoursite.com/2020/06/23/test/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java 核心技术 卷I - 第九章Java集合框架  主要接口在上面可以看到两个接口Collection和Map CollectionCollection接口它包含了集合的基本操作和属性 主要有三个分支  List(有序集合) Set(不包含重复元素的集合) Queue(队列)  Map而Map接口则是映射(映射用来存放键&#x2F;值对) 抽象类 (Abstract…) AbstractCollecti">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/27392/java-notes/blob/master/src/main/resources/uml/collection.png">
+<meta property="og:image" content="https://github.com/27392/java-notes/blob/master/src/main/resources/uml/map.png">
+<meta property="article:published_time" content="2020-06-23T10:41:13.000Z">
+<meta property="article:modified_time" content="2020-06-30T11:06:46.763Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/27392/java-notes/blob/master/src/main/resources/uml/collection.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2020/06/23/test/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/27392" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/27392" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SpringSecurity/" style="font-size: 13px;">SpringSecurity</a> <a href="/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 13px;">源码</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/30/JavaDate%E4%B8%8EJavaTime%E4%BA%92%E6%93%8D%E4%BD%9C/" class="title">JavaDate与JavaTime互操作</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-30T18:27:33.000Z" itemprop="datePublished">2020-06-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/30/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-30T11:06:46.763Z" itemprop="datePublished">2020-06-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/23/SpringSecurity%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B/" class="title">SpringSecurity认证流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-23T13:33:10.000Z" itemprop="datePublished">2020-06-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/nginx/">nginx</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/23/test3/" class="title">test3</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-23T11:36:33.000Z" itemprop="datePublished">2020-06-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/java/">java</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/23/test/" class="title">test</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-23T10:41:13.000Z" itemprop="datePublished">2020-06-23</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-核心技术-卷I-第九章"><span class="toc-number">1.</span> <span class="toc-text">Java 核心技术 卷I - 第九章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java集合框架"><span class="toc-number">2.</span> <span class="toc-text">Java集合框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要接口"><span class="toc-number">2.1.</span> <span class="toc-text">主要接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Collection"><span class="toc-number">2.1.1.</span> <span class="toc-text">Collection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Map"><span class="toc-number">2.1.2.</span> <span class="toc-text">Map</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象类-Abstract…"><span class="toc-number">2.1.3.</span> <span class="toc-text">抽象类 (Abstract…)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Iterable-标识迭代器接口"><span class="toc-number">2.1.4.</span> <span class="toc-text">Iterable(标识迭代器接口)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主要实现-归类"><span class="toc-number">2.1.5.</span> <span class="toc-text">主要实现(归类)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection接口"><span class="toc-number">2.2.</span> <span class="toc-text">Collection接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代器"><span class="toc-number">2.3.</span> <span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ListIterator接口"><span class="toc-number">2.3.1.</span> <span class="toc-text">ListIterator接口</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体的实现"><span class="toc-number">3.</span> <span class="toc-text">具体的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-number">3.1.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#散列表"><span class="toc-number">3.2.</span> <span class="toc-text">散列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#举例说明"><span class="toc-number">3.2.1.</span> <span class="toc-text">举例说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#散列函数-哈希函数"><span class="toc-number">3.2.2.</span> <span class="toc-text">散列函数(哈希函数)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#哈希冲突"><span class="toc-number">3.2.3.</span> <span class="toc-text">哈希冲突</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java中散列表"><span class="toc-number">3.2.4.</span> <span class="toc-text">Java中散列表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#举例说明-1"><span class="toc-number">3.2.4.1.</span> <span class="toc-text">举例说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#扩容"><span class="toc-number">3.2.4.2.</span> <span class="toc-text">扩容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#注意点"><span class="toc-number">3.2.4.3.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优缺点"><span class="toc-number">3.2.4.4.</span> <span class="toc-text">优缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-集"><span class="toc-number">3.3.</span> <span class="toc-text">Set (集)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">3.3.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Queue-队列"><span class="toc-number">3.4.</span> <span class="toc-text">Queue (队列)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-映射"><span class="toc-number">3.5.</span> <span class="toc-text">Map(映射)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图与包装器"><span class="toc-number">4.</span> <span class="toc-text">视图与包装器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#轻量级集合包装器"><span class="toc-number">4.1.</span> <span class="toc-text">轻量级集合包装器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#子范围视图"><span class="toc-number">4.2.</span> <span class="toc-text">子范围视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不可修改视图"><span class="toc-number">4.3.</span> <span class="toc-text">不可修改视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步视图"><span class="toc-number">4.4.</span> <span class="toc-text">同步视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检查视图"><span class="toc-number">4.5.</span> <span class="toc-text">检查视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不可变视图、同步视图、检查视图注意点"><span class="toc-number">4.6.</span> <span class="toc-text">不可变视图、同步视图、检查视图注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法"><span class="toc-number">5.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#排序与混排"><span class="toc-number">5.1.</span> <span class="toc-text">排序与混排</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二分查找"><span class="toc-number">5.2.</span> <span class="toc-text">二分查找</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意"><span class="toc-number">5.2.1.</span> <span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单算法"><span class="toc-number">5.3.</span> <span class="toc-text">简单算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#批操作"><span class="toc-number">5.4.</span> <span class="toc-text">批操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合与数组的转换"><span class="toc-number">5.5.</span> <span class="toc-text">集合与数组的转换</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-test" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      test
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/06/23/test/" class="article-date">
+	  <time datetime="2020-06-23T10:41:13.000Z" itemprop="datePublished">2020-06-23</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </span>
+
+        
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/23/test/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 11.7k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 50(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="Java-核心技术-卷I-第九章"><a href="#Java-核心技术-卷I-第九章" class="headerlink" title="Java 核心技术 卷I - 第九章"></a>Java 核心技术 卷I - 第九章</h2><h2 id="Java集合框架"><a href="#Java集合框架" class="headerlink" title="Java集合框架"></a>Java集合框架</h2><p><img src="https://github.com/27392/java-notes/blob/master/src/main/resources/uml/collection.png" alt=""></p>
+<p><img src="https://github.com/27392/java-notes/blob/master/src/main/resources/uml/map.png" alt=""></p>
+<h3 id="主要接口"><a href="#主要接口" class="headerlink" title="主要接口"></a>主要接口</h3><p>在上面可以看到两个接口<code>Collection</code>和<code>Map</code></p>
+<h4 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h4><p><code>Collection</code>接口它包含了集合的基本操作和属性</p>
+<p>主要有三个分支</p>
+<ul>
+<li><code>List</code>(<strong>有序集合</strong>)</li>
+<li><code>Set</code>(<strong>不包含重复元素的集合</strong>)</li>
+<li><code>Queue</code>(<strong>队列</strong>)</li>
+</ul>
+<h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p>而<code>Map</code>接口则是映射(映射用来存放键/值对)</p>
+<h4 id="抽象类-Abstract…"><a href="#抽象类-Abstract…" class="headerlink" title="抽象类 (Abstract…)"></a>抽象类 (Abstract…)</h4><ul>
+<li><p>AbstractCollection</p>
+<p>  实现了<code>Collection</code>接口的部分功能</p>
+</li>
+<li><p>AbstractList</p>
+<p>  实现了<code>List</code>接口的部分功能</p>
+</li>
+<li><p>AbstractSequentialList</p>
+<p>  个人理解是链表的超类,存在这个类是为了和数组集合区分开,因为数组集合支持随机访问<code>RandomAccess</code></p>
+</li>
+<li><p>AbstractQueue</p>
+<p>  实现了<code>Queue</code>接口的部分功能</p>
+</li>
+<li><p>AbstractSet</p>
+<p>  实现了<code>Set</code>接口的部分功能</p>
+</li>
+<li><p>AbstractMap</p>
+<p>  实现了<code>Map</code>接口的部分功能</p>
+</li>
+</ul>
+<blockquote>
+<p>正如之前在第五章所说的抽象类一样,我们可以将一些通用的方法及与放在超类中</p>
+<p><code>AbstractList</code>中实现了<code>List</code>中部分方法,直接继承<code>AbstractList</code>拓展起来更方便</p>
+<p>如果我们创建自己的<code>List</code>那么就不用从<code>List</code>接口开始并实现其中的全部方法,只需从<code>AbstractList</code>继承,然后执行一些创建新类必须的工作</p>
+</blockquote>
+<h4 id="Iterable-标识迭代器接口"><a href="#Iterable-标识迭代器接口" class="headerlink" title="Iterable(标识迭代器接口)"></a>Iterable(标识迭代器接口)</h4><p>迭代器是用来遍历集合的工具,它也是一种设计模式</p>
+<p>通过<code>Iterable</code>接口可以获取<code>Iterator</code>对象通过他来对象集合进行遍历</p>
+<p>而<code>Collection</code>继承了<code>Iterator</code>接口,也就是说所有实现<code>Collection</code>的类都可以使用<code>Iterator</code>遍历器去遍历</p>
+<h4 id="主要实现-归类"><a href="#主要实现-归类" class="headerlink" title="主要实现(归类)"></a>主要实现(归类)</h4><table>
+<thead>
+<tr>
+<th>集合类型</th>
+<th>描 述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ArrayList</td>
+<td>一种可以动态增长和缩减的索引序列</td>
+</tr>
+<tr>
+<td>LinkedList</td>
+<td>一种可以在任何位置进行高效地插人和删除操作的有序序列</td>
+</tr>
+<tr>
+<td>ArrayDeque</td>
+<td>一种用循环数组实现的双端队列</td>
+</tr>
+<tr>
+<td>HashSet</td>
+<td>一种没有重复元素的无序集合</td>
+</tr>
+<tr>
+<td>TreeSet</td>
+<td>一种有序集</td>
+</tr>
+<tr>
+<td>EnumSet</td>
+<td>一种包含枚举类型值的集</td>
+</tr>
+<tr>
+<td>LinkedHashSet</td>
+<td>一种可以记住元素插人次序的集</td>
+</tr>
+<tr>
+<td>PriorityQueue</td>
+<td>一种允许高效删除最小元素的集合</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>一种存储键 / 值关联的数据结构</td>
+</tr>
+<tr>
+<td>TreeMap</td>
+<td>一种键值有序排列的映射表</td>
+</tr>
+<tr>
+<td>EnumMap</td>
+<td>一种键值属于枚举类型的映射表</td>
+</tr>
+<tr>
+<td>LinkedHashMap</td>
+<td>一种可以记住键 / 值项添加次序的映射表</td>
+</tr>
+<tr>
+<td>WeakHashMap</td>
+<td>一种其值无用武之地后可以被垃圾回收器回收的映射表</td>
+</tr>
+<tr>
+<td>IdentityHashMap</td>
+<td>一种用<code>==</code>而不是用<code>equals</code>比较键值的映射表</td>
+</tr>
+</tbody></table>
+<h3 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h3><blockquote>
+<p><strong>在Java类库中,集合类的根接口是<code>Collection</code>接口</strong></p>
+</blockquote>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p><code>Iterator</code>接口包含四个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果存在可访问的元素,返回true</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回将要访问的下一个对象.如果已经到达了集合的尾部,将抛出一个 NoSuchElementException</span></span><br><span class="line">    <span class="function">E <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 删除上次访问的对象.这个方法必须紧跟在访问一个元素之后执行.如果上次访问之后,集合已经发生了变化,这个方法将抛出一个 IllegalStateException</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// jdk8 遍历</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEachRemaining</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> E&gt; action)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过反复调用<code>next</code>方法可以逐个访问集合中的每个元素.</p>
+<p>但是到达了集合的末尾,<code>next</code>方法将抛出一个<code>NoSuchElementException</code>异常</p>
+<p>因此需要在调用<code>next</code>之前调用<code>hasNext</code>方法.如果迭代器对象还有多个供访问的元素,这个方法就返回<code>true</code></p>
+<p>如果想查看集合中的所有元素,就请求一个迭代器,并在<code>hasNext</code>返回<code>true</code>时反复的调用<code>next</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">    System.out.println(iterator.next());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用<code>for each</code>循环可以更加简练的表示同样的循环操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Integer integer : collection) &#123;</span><br><span class="line">    System.out.println(integer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>编译器简单地将<code>for each</code>循环翻译为带有迭代器的循环</strong></p>
+<p><strong><code>for each</code>循环可以与任何实现了<code>Iterable</code>接口的对象一起工作,这个接口只包含一个方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>Collection</code>接口扩展了<code>Iterable</code>接口.因此对于标准库中的任何集合都可以使用<code>for each</code>循环</strong></p>
+<blockquote>
+<p><strong>也就是说<code>for each</code>只是一个语法糖,最后还是会翻译成迭代器的写法,同时扩展了<code>Iterable</code>接口的类都可以使用<code>for each</code>循环</strong></p>
+</blockquote>
+<p>在JDK8中,可以调用<code>forEachRemaining</code>方法来完成遍历</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iterator.forEachRemaining(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<p><code>forEachRemaining</code>方法内部也是同样的在<code>next</code>前调用<code>hasNext</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEachRemaining</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> E&gt; action)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(action);</span><br><span class="line">    <span class="keyword">while</span> (hasNext())</span><br><span class="line">        action.accept(next());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意: <strong>元素被访问的顺序取决于集合的类型</strong></p>
+<blockquote>
+<p>如果对<code>ArrayList</code>进行迭代,迭代器将从索引<code>0</code>开始,每迭代一次,索引值加<code>1</code></p>
+<p>然而,如果是访问<code>HashSet</code>中的元素,每个元素将会按照某种随机的次序出现.</p>
+<p>虽然可以确定在迭代过程中能够遍历到集合中的所有元素,但却无法预知元素被访问的次序</p>
+<p>这对计算总和或统计符合某个条件的元素个数这类与顺序无关的操作来说并不是什么问题</p>
+</blockquote>
+<p><code>remove</code>方法则是删除上次调用<code>next</code>方法时返回的元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">    iterator.next();</span><br><span class="line">    iterator.remove();    <span class="comment">// 如果在调用remove之前没有调用next则会抛出异常,且不能多次删除</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>next</code>方法和<code>remove</code>方法的调用具有互相依赖性</strong></p>
+<p><strong>如果调用<code>remove</code>之前没有调用<code>next</code>是不合法的,如果这样做将会抛出一个<code>IllegalStateException</code>异常</strong></p>
+<p><strong>如果想要删除相邻的元素,不能多次调用<code>remove</code>方法</strong></p>
+<blockquote>
+<p>可以将<code>next</code>方法理解为是一个指针,初始化时指向一个不存在的位置,每当调用一次则移动指针到下一个位置</p>
+<p>书上说,可以将<code>next</code>方法与<code>Inputstream.read</code>方法看做等效</p>
+<p>从数据流中读取一个字节,就会自动的”消耗掉”这个字节,下一次调用<code>read</code>将会消耗并返回输入的下一个字节</p>
+<p>用同样的方法,反复调用<code>next</code>方法就可以读取集合中所有的元素</p>
+</blockquote>
+<h4 id="ListIterator接口"><a href="#ListIterator接口" class="headerlink" title="ListIterator接口"></a>ListIterator接口</h4><blockquote>
+<p><code>ListIterator</code>接口继承了<code>Iterator</code>接口,提供了专门操作<code>List</code>的方法,也就是说<code>ListIterator</code>是为<code>List</code>所特有的</p>
+</blockquote>
+<p><code>ListIterator</code>接口在<code>Iterator</code>接口的基础上增加如下方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ListIterator</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当反向迭代列表时,还有可供访问的元素,返回true</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasPrevious</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取之前的元素</span></span><br><span class="line">    <span class="function">E <span class="title">previous</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回下一次调用 next 方法时将返回的元素索引</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">nextIndex</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回下一次调用 previous 方法时将返回的元素索引</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">previousIndex</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用新元素取代 next 或 previous 上次访问的元素.如果在 next 或 previous 上次调用之后列表结构被修改了,将抛出一个 IllegalStateException</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(E e)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 在当前位置前添加一个元素</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(E e)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>ListIterator</code>接口增加了添加元素,设置元素,反向遍历,获取当前位置等功能</p>
+<p>而在<code>List</code>接口中提供了两种获取<code>ListIterator</code>的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回一个列表迭代器,以便用来访问列表中的元素</span></span><br><span class="line">    <span class="function">ListIterator&lt;E&gt; <span class="title">listIterator</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回一个列表迭代器,以便用来访问列表中的元素,这个元素是第一次调用 next 返回的给定索引的元素</span></span><br><span class="line">    <span class="function">ListIterator&lt;E&gt; <span class="title">listIterator</span><span class="params">(<span class="keyword">int</span> index)</span></span>;</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="具体的实现"><a href="#具体的实现" class="headerlink" title="具体的实现"></a>具体的实现</h2><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p><strong><code>List</code>: 有序集合(也称为序列)</strong>.<code>List</code>接口在<code>Collection</code>接口的基础上添加了大量的方法</p>
+<p>使得可以精确地控制每个元素在列表中的插入位置. 用户可以通过其整数索引(在列表中的位置)访问元素,并搜索列表中的元素</p>
+<p><code>List</code>接口下有两种类型的实现</p>
+<ul>
+<li><p>基于<a href="https://baike.baidu.com/item/%E6%95%B0%E7%BB%84/3794097?fr=aladdin" target="_blank" rel="noopener">数组</a>的<code>ArrayList</code>、<code>Vector</code></p>
+<p>  <code>ArrayList</code>其底层维护一个数组.在操作删除或者添加操作时,具有自动调节数组容量的功能</p>
+<p>  <code>Vector</code>与<code>ArrayList</code>同理,它们的区别是</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>是否线程安全</th>
+<th>扩容大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ArrayList</td>
+<td>线程不安全</td>
+<td><code>1.5</code>倍</td>
+</tr>
+<tr>
+<td>Vector</td>
+<td>线程安全</td>
+<td><code>2</code>倍</td>
+</tr>
+</tbody></table>
+<p>  <strong>在Java老版本中,使用<code>Vector</code>实现动态数组.不过<code>ArrayList</code>更有效,所以一般还是使用<code>ArrayList</code></strong></p>
+<blockquote>
+<p>数组在内存中是顺序存储,因此可以很好地实现逻辑上的顺序表</p>
+<p>既不能打乱元素的储存顺序,也不能跳过某个储存单元进行储存</p>
+</blockquote>
+</li>
+<li><p>基于<a href="https://baike.baidu.com/item/%E9%93%BE%E8%A1%A8/9794473?fr=aladdin" target="_blank" rel="noopener">链表</a>的<code>linkedList</code></p>
+<p>  <strong>尽管数组在连续的存储位置上存放对象引用,但是链表却将每个对象放在独立的节点中,每个节点还存放着序列中下一个节点的引用</strong></p>
+<p>  <strong>在Java语言中所有的链表实际上都是双向链表</strong>,(即每个节点还存放在指向前驱节点的引用)</p>
+<p>  <strong>所以<code>linkedList</code>也是双向链表</strong></p>
+<blockquote>
+<p>数组在内存中顺序存储,而链表在内存中则是随机存储,链表将每一个节点分布在内存不同的位置,依靠<code>next</code>指针关联</p>
+<p>这样可以灵活的利用零散的碎片空间</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>数组VS链表</p>
+<p><strong>数组和链表都属于线性数据结构</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>查询</th>
+<th>更新</th>
+<th>插入</th>
+<th>删除</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数组</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>链表</td>
+<td>O(n)</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p>从表格中可以看出,<strong>数组的优势在于能够快速定位元素,对于读操作多、写操作少的场景来说,用数组更合适</strong></p>
+<p><strong>相反地,链表的优势在于能够灵活的进行插入和删除操作,如果需要在尾部频繁插入、删除元素,用链表更合适</strong></p>
+<h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><p><a href="https://zh.wikipedia.org/wiki/%E5%93%88%E5%B8%8C%E8%A1%A8" target="_blank" rel="noopener">散列表</a>(<code>Hash table</code>,也叫哈希表),<strong>是根据键(<code>Key</code>)而直接访问在内存储存位置的数据结构</strong></p>
+<p>也就是说,<strong>它通过计算一个关于键值的函数,将所需查询的数据映射到表中一个位置来访问记录,这加快了查找速度.这个映射函数称做散列函数,存放记录的数组称做散列表</strong></p>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><p>为了查找电话簿中某人的号码,可以创建一个按照人名首字母顺序排列的表(即建立人名<code>x</code>到首字母<code>F(x)</code>的一个函数关系),在首字母为<code>W</code>的表中查找“王”姓的电话号码,显然比直接查找就要快得多</p>
+<p>这里使用人名作为关键字,“取首字母”是这个例子中散列函数的函数法则<code>F()</code>,存放首字母的表对应散列表.关键字和函数法则理论上可以任意确定</p>
+<h4 id="散列函数-哈希函数"><a href="#散列函数-哈希函数" class="headerlink" title="散列函数(哈希函数)"></a>散列函数(哈希函数)</h4><p>通过上面例子,我们可以把散列函数比喻成一个中转站,它可以帮助我们将<code>key</code>转化为数组的下标</p>
+<p>而哈希表本质上就是一个数组,通过散列函数,我们可以极其快速的查询到<code>key</code>值所对应的信息</p>
+<h4 id="哈希冲突"><a href="#哈希冲突" class="headerlink" title="哈希冲突"></a>哈希冲突</h4><ol>
+<li><p>开放寻址法</p>
+<p> 开发寻址法就是但我们遇到了哈希冲突,我们就重新探索一个空闲位置,然后插入</p>
+</li>
+<li><p>链地址法</p>
+</li>
+</ol>
+<p>　　采用数组和链表相结合的办法,将<code>Hash</code>地址相同的记录存储在一张线性表中,而每张表的表头的序号即为计算得到的<code>Hash</code>地址   </p>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%93%88%E5%B8%8C%E8%A1%A8#%E5%A4%84%E7%90%86%E5%86%B2%E7%AA%81" target="_blank" rel="noopener">相关资料</a></p>
+<h4 id="Java中散列表"><a href="#Java中散列表" class="headerlink" title="Java中散列表"></a>Java中散列表</h4><p><strong>在Java中,散列表使用链表数组实现(也就是链地址法)</strong>,而每个列表被称为桶(<code>bucket</code>)</p>
+<p><strong>想要查询表中对像的位置,就要先计算它的散列码(<code>hash code</code>),然后于桶的总数取余,所得到的结果就是保存这个元素桶的索引</strong></p>
+<blockquote>
+<p><code>hashCode()</code>方法是定义在Object中,所以所有的对象都有此方法</p>
+</blockquote>
+<h5 id="举例说明-1"><a href="#举例说明-1" class="headerlink" title="举例说明"></a>举例说明</h5><p>例如,某个对象的散列码(调用对象的<code>hashCode</code>方法的返回值)为<code>76268</code>,并且有<code>128</code>个桶,那么对象就应该保持在第<code>108</code>号桶中(<code>76268</code>除以<code>128</code>余<code>108</code>)</p>
+<p>或许会很幸运,在这个桶中没有其他元素,此时将元素直接插入到桶中就可以了</p>
+<p>当然,有时候会遇到桶被占满的情况,这也是不可避免的.这种情况叫<strong>散列冲突</strong></p>
+<p>那么这时,就需要用新对象与桶中的所有对象逐个进行对比(调用对象的<code>equals()</code>),查看这个对象是否存在</p>
+<blockquote>
+<p>重写equals就必须重写hashCode,<a href="https://github.com/27392/java-notes/tree/master/src/main/java/cn/haohaoli/book/core/base/chapter5#523---hashcode" target="_blank" rel="noopener">具体查看hashCode笔记</a></p>
+</blockquote>
+<p>如果散列码是合理且随机分布,同时桶的数目也够大,需要比较的次数就会很少</p>
+<h5 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h5><p><strong>标准库使用的桶数是<code>2的幂</code>,默认值为<code>16</code>(为表大小提供任何职都将被自动地转换为<code>2的下一个幂</code>)</strong></p>
+<p>如果散列表太满,就需要再散列(<code>rehashed</code>).如果要对散列表在散列,就需要创建一个桶数更多的表,并将所有的元素插入到这个新表中,然后丢弃原来的表</p>
+<p><strong>装填因子(load factor)决定合适对散列表进行再散列</strong></p>
+<p>例如.<strong>如果装填因子为<code>0.75</code>(默认值),而表中超过<code>75%</code>的位置已经填入元素,这个表就会用双碑的桶数自动的进行再散列</strong></p>
+<p><strong>对大多数应用程序来说,装填因子<code>0.75</code>是比较合理的</strong></p>
+<h5 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h5><p><strong>想要更多地控制散列表的运行性能,就要指定一个初始的桶数</strong></p>
+<p><strong>桶数是指用于收集有相同散列值的数目.如果要插入到散列表中的元素太多,就会增加冲突的可能性,降低运行性能</strong></p>
+<p><strong>如果大致知道最终会有多少个元素要插入到散列表中,就可以设置桶数.通常将桶数设置为预计元素个数的<code>75% ~ 150%</code></strong></p>
+<p><strong>存在散列表中的对象,必须要重写<code>hashCode</code>和<code>equals</code>方法</strong></p>
+<blockquote>
+<p><strong>在Java8中,桶中元素大于8并且桶大于等于64时,会从链表变成平衡二叉树(红黑树)</strong></p>
+</blockquote>
+<h5 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h5><p>散列表的<strong>缺点是无法控制元素出现的次序</strong>,优点是<strong>能高效的查找,时间复杂度接近<code>O(1)</code></strong></p>
+<h3 id="Set-集"><a href="#Set-集" class="headerlink" title="Set (集)"></a>Set (集)</h3><p><strong><code>Set</code>: 储存无序的、不可重复的数据</strong>.<code>Set</code>接口并没有添加新的方法,所有的方法都继承自<code>Collection</code>接口</p>
+<ol>
+<li><p><strong>无序性</strong>:</p>
+<p> 不等于随机性,储存的数据在底层数组中并非按照数组索引添加,而是根据数据的<strong>(散列码)哈希值</strong>决定的</p>
+<blockquote>
+<p>其实底层使用的时<code>HashMap</code>,<code>HashMap</code>底层是数组.关于这部分知识可以查看后面的<code>HashMap</code></p>
+</blockquote>
+</li>
+<li><p><strong>不可重复性</strong>:</p>
+<p> 保证添加的元素按照<code>equals()</code>判断时,不能返回<code>true</code>,即.相同的元素只能添加一个</p>
+</li>
+</ol>
+<hr>
+<p><code>Set</code>接口下主要有四个主要的实现类</p>
+<ul>
+<li><p><code>HashSet</code>(常用)</p>
+<p> 为快速查找而设计的<code>Set</code><strong>它是实现了散列表的集</strong>.存入<code>HashSet</code>的元素必须定义<code>hashCode()</code></p>
+<blockquote>
+<p>内部使用<code>HashMap</code></p>
+</blockquote>
+</li>
+<li><p><code>LinkedHashSet</code></p>
+<p> 它是<code>HashSet</code>的子类,具有<code>HashSet</code>的查询速度,同时内部使用链表维护元素的顺序(插入的顺序).元素也必须定义<code>hashCode()</code></p>
+<blockquote>
+<p>它并没有添加额外的方法,只是在构造时,使用<code>LinkedHashMap</code>.关于这部分知识可以查看后面的<code>LinkedHashMap</code></p>
+</blockquote>
+</li>
+<li><p><code>TreeSet</code></p>
+<p> 它与散列集十分类似,不过,它比散列集有所改进.</p>
+<p> <strong>树集是一个有序集合可以以任意顺序将元素插入到集合中.在对集合进行遍历时,每个值将自动地按照排序后的顺序呈现</strong></p>
+<p> <strong>它与散列集不同,它并不是使用<code>equals()</code>来判断两个元素是否相同,而是使用<a href="https://github.com/27392/java-notes/tree/master/src/main/java/cn/haohaoli/book/core/base/chapter6#611-%E6%8E%A5%E5%8F%A3%E6%A6%82%E5%BF%B5" target="_blank" rel="noopener"><code>Comparable</code></a>、<a href="https://github.com/27392/java-notes/tree/master/src/main/java/cn/haohaoli/book/core/base/chapter6#622-comparator%E6%8E%A5%E5%8F%A3" target="_blank" rel="noopener"><code>Comparator</code></a>来判断是否相同</strong></p>
+<p> <strong>所以要使用它,必须能够比较元素.这些元素必须实现<code>Comparable</code>接口或者构造集时必须提供一个<code>Comparator</code></strong></p>
+<blockquote>
+<p>需要注意一点: <strong>当<code>Comparable</code>,<code>Comparator</code>同时存在时,使用给定的<code>Comparator</code>规则</strong></p>
+<p>同样<code>TreeSet</code>内部也同样使用<code>TreeMap</code></p>
+</blockquote>
+</li>
+<li><p><code>EnumSet</code></p>
+<p> <strong>它是一个枚举类型元素集的高效实现</strong></p>
+<blockquote>
+<p>使用的不多,这里不做介绍.需要了解的话<a href="https://www.cnblogs.com/swiftma/p/6044718.html" target="_blank" rel="noopener">参考</a></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><code>HashSet</code>在使用它之前需要重写<code>equals</code>和<code>hashCode</code>方法,否则他还是会储存重复的元素,一般情况下还是用它</p>
+<p><code>LinkedHashSet</code>它则可以记住添加元素的顺序.如果需要想添加时没有重复的元素而且记住添加时元素的顺序,那么可以使用它</p>
+<p><code>TreeSet</code>在使用它之前则需要有一个排序的规则<code>Comparable</code>、<code>Comparator</code>都可以.它会帮你在添加的时候自动排序</p>
+<h3 id="Queue-队列"><a href="#Queue-队列" class="headerlink" title="Queue (队列)"></a>Queue (队列)</h3><p><strong>队列是一种线性数据结构,队列中的元素只能先入先出(First In First Out,简称<code>FIFO</code>)</strong></p>
+<p>队列可以让人们有效地在尾部添加一个元素,在头部删除一个元素</p>
+<p>下面是在<code>Queue</code>的接口的方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Queue</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果可以在不违反容量限制的情况下立即将指定的元素插入到此队列中，</span></span><br><span class="line"><span class="comment">     * 如果成功则返回`true`,如果当前没有可用空间则抛出`IllegalStateException`</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果可以在不违反容量限制的情况下立即将指定的元素插入到此队列中</span></span><br><span class="line"><span class="comment">     * 当使用容量受限的队列时,此方法通常比`add`更可取,因为`add`可能通过抛出异常而无法仅插入元素</span></span><br><span class="line"><span class="comment">     * 如果元素被添加到此队列返回`true`否则返回`false`</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">offer</span><span class="params">(E e)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 检索并删除此队列的头.这个方法与`poll`的不同之处在于,它只在这个队列为空时抛出一个异常。</span></span><br><span class="line"><span class="comment">     * 如果这个队列是空的,则抛出`NoSuchElementException`</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">E <span class="title">remove</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 检索并删除此队列的头,如果此队列为空,则或返回null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">E <span class="title">poll</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 检索但不删除此队列的头.此方法与`peek`唯一的区别在于,如果此队列为空,它将抛出一个异常。</span></span><br><span class="line"><span class="comment">     * 如果这个队列是空的,则抛出`NoSuchElementException`</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">E <span class="title">element</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * 检索此队列的头,但不删除它,如果此队列为空,则或返回null</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="function">E <span class="title">peek</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>队列最要在并发容器中使用这里不多做介绍</p>
+</blockquote>
+<h3 id="Map-映射"><a href="#Map-映射" class="headerlink" title="Map(映射)"></a>Map(映射)</h3><p><code>Map</code>: <strong>存储键、键值对组合的集合,提供了<code>key</code>到<code>Value</code>的映射</strong>.<code>Map</code>并没有继承<code>Collection</code>而是与他一样都是根接口</p>
+<p>在<code>Map</code>中它保证了<code>key</code>与<code>value</code>之间的一一对应关系.也就是说一个<code>key</code>对应一个<code>value</code>,所以它不能存在相同的<code>key</code>值,当然<code>value</code>值可以相同</p>
+<ul>
+<li><p><code>HashMap</code> (常用)</p>
+<p>  <strong><code>HashMap</code>是基于哈希表的实现,也就是说它既有<code>Map</code>的键值对特点,也有哈希表的特点</strong></p>
+<p>  <code>HashSet</code>底层是<code>HashMap</code>,所以<code>HashSet</code>底层只要使用它就可以完成所需要的功能</p>
+<blockquote>
+<p><strong><code>HashMap</code>是线程不安全的.<code>key</code>可以为<code>null</code>,<code>value</code>也可以为<code>null</code></strong></p>
+</blockquote>
+</li>
+<li><p><code>Hashtable</code></p>
+<p>  <code>Hashtable</code>是JDK1.0提供的一个类,现在不推荐使用</p>
+<blockquote>
+<p><strong><code>Hashtable</code>是线程安全的.<code>key</code>不可以为<code>null</code>,<code>value</code>也不可以为<code>null</code></strong></p>
+</blockquote>
+</li>
+<li><p><code>TreeMap</code></p>
+<p>  同样它与<code>TreeSet</code>一样,不过<code>TreeSet</code>内部使用的是<code>TreeMap</code>.它是对<code>key</code>进行排序</p>
+<p>  <strong>同理要使用它,必须能够比较元素.这些元素必须实现<code>Comparable</code>接口或者构造集时必须提供一个<code>Comparator</code></strong></p>
+</li>
+<li><p><code>LinkedHashMap</code></p>
+<p>  <strong><code>LinkedHashSet</code>和<code>LinkedHashMap</code>类一样,它们都可以记住插入元素的顺序</strong></p>
+<p>  <strong>同样的<code>LinkedHashMap</code>也是<code>HashMap</code>的子类</strong></p>
+<p>  它在<code>Node</code>类内部增加两个字段<code>before, after</code>来记住上一个元素和下一个元素,所以<code>LinkedHashSet</code>内部使用来它达到记住元素顺序的目的</p>
+</li>
+<li><p><code>WeakHashMap</code></p>
+<p>  <strong><code>WeakHashMap</code>使用<code>WeakReference</code>类型来保存键.如果垃圾回收器发现某个特定对象已经没人他人引用了,就将其回收</strong></p>
+<p>  <a href="http://www.justdojava.com/2019/10/11/java-collection-8/" target="_blank" rel="noopener">相关资料</a></p>
+</li>
+<li><p><code>EnumMap</code></p>
+<p>  <strong>它是一个键类型为枚举类型的映射,它可以直接且高效地用一个值数组实现</strong></p>
+<blockquote>
+<p>在使用时,需要在构造器中指定键类型</p>
+<p>使用的也很少,需要了解的话<a href="https://www.cnblogs.com/swiftma/p/6044672.html" target="_blank" rel="noopener">参考</a></p>
+</blockquote>
+</li>
+<li><p><code>IdentityHashMap</code></p>
+<p>  <strong>它与<code>HashMap</code>不同它使用<code>==</code>来判断对象是否相同</strong></p>
+<p>  <a href="http://www.justdojava.com/2019/10/11/java-collection-7/" target="_blank" rel="noopener">相关资料</a></p>
+</li>
+</ul>
+<h2 id="视图与包装器"><a href="#视图与包装器" class="headerlink" title="视图与包装器"></a>视图与包装器</h2><p><strong>视图是一个轻量级的对象,它实现了<code>Collection</code>或者<code>Map</code>接口,但从传统意义上来说并不是真正的集合</strong></p>
+<p><strong>视图根本不包含其自己的数据.它的所有操作都是根据对另一个对象的操作实现</strong></p>
+<p>例如: <code>Map</code>类中的<code>keySet()</code>方法就是一个这样的实例</p>
+<p>看起来给人的感觉就是这个方法创建了一个<code>Set</code>,并将<code>Map</code>中的所有键都添加进去,然后返回.但是,实际情况并不是如此</p>
+<p>取而代之的是,<code>keySet()</code>返回一个实现<code>Set</code>接口的类型对象.这个类的方法对原<code>Map</code>进行操作</p>
+<details>
+    <summary>具体调用代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Set&lt;K&gt; ks = keySet;</span><br><span class="line">    <span class="keyword">if</span> (ks == <span class="keyword">null</span>) &#123;</span><br><span class="line">        ks = <span class="keyword">new</span> KeySet();</span><br><span class="line">        keySet = ks;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ks;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回<code>KeySet</code>对象,这个对象继承了<code>AbstractSet</code>接口,同时<code>iterator()</code>方法返回一个<code>KeyIterator</code>类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">KeySet</span> <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">K</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span>                 </span>&#123; <span class="keyword">return</span> size; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span>               </span>&#123; HashMap.<span class="keyword">this</span>.clear(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Iterator&lt;K&gt; <span class="title">iterator</span><span class="params">()</span>     </span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> KeyIterator(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123; <span class="keyword">return</span> containsKey(o); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> removeNode(hash(key), key, <span class="keyword">null</span>, <span class="keyword">false</span>, <span class="keyword">true</span>) != <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Spliterator&lt;K&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> KeySpliterator&lt;&gt;(HashMap.<span class="keyword">this</span>, <span class="number">0</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> K&gt; action)</span> </span>&#123;</span><br><span class="line">        Node&lt;K,V&gt;[] tab;</span><br><span class="line">        <span class="keyword">if</span> (action == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">        <span class="keyword">if</span> (size &gt; <span class="number">0</span> &amp;&amp; (tab = table) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> mc = modCount;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tab.length; ++i) &#123;</span><br><span class="line">                <span class="keyword">for</span> (Node&lt;K,V&gt; e = tab[i]; e != <span class="keyword">null</span>; e = e.next)</span><br><span class="line">                    action.accept(e.key);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (modCount != mc)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到这里是直接调用拿<code>Map</code>中<code>Node</code>对象的<code>key</code>遍历</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">KeyIterator</span> <span class="keyword">extends</span> <span class="title">HashIterator</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">K</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> K <span class="title">next</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> nextNode().key; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<p><a href="https://stackoverflow.com/questions/18902484/what-is-a-view-of-a-collection" target="_blank" rel="noopener">StackOverflow上关于视图的问题</a></p>
+<p><a href="https://blog.csdn.net/sinat_19968265/article/details/80469185" target="_blank" rel="noopener">CSDN相关文章</a></p>
+<h3 id="轻量级集合包装器"><a href="#轻量级集合包装器" class="headerlink" title="轻量级集合包装器"></a>轻量级集合包装器</h3><p><code>Arrays</code>类的静态方法<code>asList</code>将返回一个包装了普通Java数组的<code>List</code>包装器</p>
+<p>这个方法可以将数组传递给一个期望得到列表或集合参数的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String[]     strArray = <span class="keyword">new</span> String[]&#123;<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>&#125;;</span><br><span class="line">List&lt;String&gt; list     = Arrays.asList(strArray);</span><br></pre></td></tr></table></figure>
+
+<p><strong>返回的对象不是<code>ArrayList</code>(虽然它也叫<code>ArrayList</code>)</strong></p>
+<p><strong>它是一个视图对象,带有访问底层数组的<code>get</code>和<code>set</code>方法</strong></p>
+<blockquote>
+<p>特别注意: <strong>改变数组大小的所有方法(例如,迭代器相关的<code>add</code>和<code>remove</code>方法)都会抛出一个<code>UnsupportedOperationException</code>异常</strong></p>
+</blockquote>
+<p>另外该方法还可以接受可变长参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list     = Arrays.asList(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>);</span><br></pre></td></tr></table></figure>
+
+<details>
+    <summary>asList方法具体代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">asList</span><span class="params">(T... a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>ArrayList</code>并不是<code>java.util.ArrayList</code>.它只是<code>Arrays</code>类中的一个内部类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">RandomAccess</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">2764017481108945198L</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> E[] a;</span><br><span class="line"></span><br><span class="line">        ArrayList(E[] array) &#123;</span><br><span class="line">            a = Objects.requireNonNull(array);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> a.length;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Object[] toArray() &#123;</span><br><span class="line">            <span class="keyword">return</span> a.clone();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">        <span class="keyword">public</span> &lt;T&gt; T[] toArray(T[] a) &#123;</span><br><span class="line">            <span class="keyword">int</span> size = size();</span><br><span class="line">            <span class="keyword">if</span> (a.length &lt; size)</span><br><span class="line">                <span class="keyword">return</span> Arrays.copyOf(<span class="keyword">this</span>.a, size,</span><br><span class="line">                                     (Class&lt;? extends T[]&gt;) a.getClass());</span><br><span class="line">            System.arraycopy(<span class="keyword">this</span>.a, <span class="number">0</span>, a, <span class="number">0</span>, size);</span><br><span class="line">            <span class="keyword">if</span> (a.length &gt; size)</span><br><span class="line">                a[size] = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">return</span> a;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> a[index];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">            E oldValue = a[index];</span><br><span class="line">            a[index] = element;</span><br><span class="line">            <span class="keyword">return</span> oldValue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">            E[] a = <span class="keyword">this</span>.a;</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++)</span><br><span class="line">                    <span class="keyword">if</span> (a[i] == <span class="keyword">null</span>)</span><br><span class="line">                        <span class="keyword">return</span> i;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++)</span><br><span class="line">                    <span class="keyword">if</span> (o.equals(a[i]))</span><br><span class="line">                        <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> indexOf(o) != -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Spliterator&lt;E&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Spliterators.spliterator(a, Spliterator.ORDERED);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> E&gt; action)</span> </span>&#123;</span><br><span class="line">            Objects.requireNonNull(action);</span><br><span class="line">            <span class="keyword">for</span> (E e : a) &#123;</span><br><span class="line">                action.accept(e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">replaceAll</span><span class="params">(UnaryOperator&lt;E&gt; operator)</span> </span>&#123;</span><br><span class="line">            Objects.requireNonNull(operator);</span><br><span class="line">            E[] a = <span class="keyword">this</span>.a;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">                a[i] = operator.apply(a[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparator&lt;? <span class="keyword">super</span> E&gt; c)</span> </span>&#123;</span><br><span class="line">            Arrays.sort(a, c);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<p><code>Collections.nCopies(n, anObject)</code>方法将返回一个实现了<code>List</code>接口的不可修改的对象,并给人一种包含N个元素的,每个元素都像是一个<code>anObject</code>的错觉</p>
+<p>例如,创建一个包含100个字符串的<code>List</code>,每个元素都设置为<code>&quot;DEFAULT&quot;</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collections.nCopies(<span class="number">100</span>, <span class="string">"DEFAULT"</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其实内部只有一个元素,而<code>size</code>是<code>100</code>,所以存储的代价很小</p>
+</blockquote>
+<details>
+    <summary>查看具体代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">nCopies</span><span class="params">(<span class="keyword">int</span> n, T o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"List length = "</span> + n);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> CopiesList&lt;&gt;(n, o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">CopiesList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">RandomAccess</span>, <span class="title">Serializable</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">2739099268398711800L</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> n;</span><br><span class="line">        <span class="keyword">final</span> E element;</span><br><span class="line"></span><br><span class="line">        CopiesList(<span class="keyword">int</span> n, E e) &#123;</span><br><span class="line">            <span class="keyword">assert</span> n &gt;= <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">this</span>.n = n;</span><br><span class="line">            element = e;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> n != <span class="number">0</span> &amp;&amp; eq(obj, element);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> contains(o) ? <span class="number">0</span> : -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lastIndexOf</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> contains(o) ? n - <span class="number">1</span> : -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= n)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"Index: "</span>+index+</span><br><span class="line">                                                    <span class="string">", Size: "</span>+n);</span><br><span class="line">            <span class="keyword">return</span> element;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Object[] toArray() &#123;</span><br><span class="line">            <span class="keyword">final</span> Object[] a = <span class="keyword">new</span> Object[n];</span><br><span class="line">            <span class="keyword">if</span> (element != <span class="keyword">null</span>)</span><br><span class="line">                Arrays.fill(a, <span class="number">0</span>, n, element);</span><br><span class="line">            <span class="keyword">return</span> a;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">        <span class="keyword">public</span> &lt;T&gt; T[] toArray(T[] a) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> n = <span class="keyword">this</span>.n;</span><br><span class="line">            <span class="keyword">if</span> (a.length &lt; n) &#123;</span><br><span class="line">                a = (T[])java.lang.reflect.Array</span><br><span class="line">                    .newInstance(a.getClass().getComponentType(), n);</span><br><span class="line">                <span class="keyword">if</span> (element != <span class="keyword">null</span>)</span><br><span class="line">                    Arrays.fill(a, <span class="number">0</span>, n, element);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Arrays.fill(a, <span class="number">0</span>, n, element);</span><br><span class="line">                <span class="keyword">if</span> (a.length &gt; n)</span><br><span class="line">                    a[n] = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> a;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> List&lt;E&gt; <span class="title">subList</span><span class="params">(<span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (fromIndex &lt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"fromIndex = "</span> + fromIndex);</span><br><span class="line">            <span class="keyword">if</span> (toIndex &gt; n)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"toIndex = "</span> + toIndex);</span><br><span class="line">            <span class="keyword">if</span> (fromIndex &gt; toIndex)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"fromIndex("</span> + fromIndex +</span><br><span class="line">                                                   <span class="string">") &gt; toIndex("</span> + toIndex + <span class="string">")"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> CopiesList&lt;&gt;(toIndex - fromIndex, element);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 省略 equals hashcode</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Override default methods in Collection</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Stream&lt;E&gt; <span class="title">stream</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> IntStream.range(<span class="number">0</span>, n).mapToObj(i -&gt; element);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Stream&lt;E&gt; <span class="title">parallelStream</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> IntStream.range(<span class="number">0</span>, n).parallel().mapToObj(i -&gt; element);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Spliterator&lt;E&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> stream().spliterator();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObject</span><span class="params">(ObjectInputStream ois)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">            ois.defaultReadObject();</span><br><span class="line">            SharedSecrets.getJavaOISAccess().checkArray(ois, Object[]<span class="class">.<span class="keyword">class</span>, <span class="title">n</span>)</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<p>然而在<code>Collections</code>类中还有类似的几个方法</p>
+<p><code>Collection.singleton(anObject)</code></p>
+<blockquote>
+<p><strong>这个方法返回一个实现了<code>Set</code>接口视图对象,并且是一个不可修改的单元素<code>Set</code>,这样的花就不需要付出建立数据结构的开销</strong></p>
+</blockquote>
+<p>同样的还有<code>singletonList</code>,<code>singletonMap</code>方法都是一样的</p>
+<details>
+ <summary>singleton方法具体代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">Serializable</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">3193687207550431679L</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> E element;</span><br><span class="line"></span><br><span class="line">        SingletonSet(E e) &#123;element = e;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> singletonIterator(element);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="number">1</span>;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;<span class="keyword">return</span> eq(o, element);&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Override default methods for Collection</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> E&gt; action)</span> </span>&#123;</span><br><span class="line">            action.accept(element);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Spliterator&lt;E&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> singletonSpliterator(element);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">removeIf</span><span class="params">(Predicate&lt;? <span class="keyword">super</span> E&gt; filter)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<p><code>Collection.emptyMap(anObject)</code></p>
+<blockquote>
+<p>这个方法返回一个实现了<code>Map</code>接口视图对象,它的内部没有元素</p>
+</blockquote>
+<p>同样的还有<code>emptySet</code>,<code>emptyList</code>方法都是一样的</p>
+<h3 id="子范围视图"><a href="#子范围视图" class="headerlink" title="子范围视图"></a>子范围视图</h3><p>视图不仅仅全部都是操作所有的数据,它还可以操作部分数据</p>
+<p>例如,我们想获取第1~第3个元素.就可以使用<code>subList</code>方法来获得一个列表的子范围视图</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringList = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>));</span><br><span class="line">List&lt;String&gt; subList    = stringList.subList(<span class="number">1</span>, <span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>第一个索引包含在内,第二个索引则不包含在内.这与<code>String</code>类的<code>substring</code>操作中的参数情况相同</strong></p>
+</blockquote>
+<p><strong>可以将任何操作应用于子范围,并且能够自动地反映整个列表的情况</strong>例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringList = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>));</span><br><span class="line">List&lt;String&gt; subList    = stringList.subList(<span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">subList.clear();                <span class="comment">// 清除视图同时其实删除原对象内的元素</span></span><br><span class="line">System.out.println(stringList);</span><br></pre></td></tr></table></figure>
+
+<p>将子范围视图清空后(<code>subList.clear()</code>),相对应的元素自动从<code>stringList</code>中删除,并且<code>subList</code>为空</p>
+<details>
+<summary>ArrayList中subList源码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">SubList</span> <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">RandomAccess</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> AbstractList&lt;E&gt; parent;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> parentOffset;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> offset;</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    SubList(AbstractList&lt;E&gt; parent,</span><br><span class="line">            <span class="keyword">int</span> offset, <span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex) &#123;</span><br><span class="line">        <span class="keyword">this</span>.parent = parent;</span><br><span class="line">        <span class="keyword">this</span>.parentOffset = fromIndex;</span><br><span class="line">        <span class="keyword">this</span>.offset = offset + fromIndex;</span><br><span class="line">        <span class="keyword">this</span>.size = toIndex - fromIndex;</span><br><span class="line">        <span class="keyword">this</span>.modCount = ArrayList.<span class="keyword">this</span>.modCount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E e)</span> </span>&#123;</span><br><span class="line">        rangeCheck(index);</span><br><span class="line">        checkForComodification();</span><br><span class="line">        E oldValue = ArrayList.<span class="keyword">this</span>.elementData(offset + index);</span><br><span class="line">        ArrayList.<span class="keyword">this</span>.elementData[offset + index] = e;</span><br><span class="line">        <span class="keyword">return</span> oldValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        rangeCheck(index);</span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="keyword">return</span> ArrayList.<span class="keyword">this</span>.elementData(offset + index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E e)</span> </span>&#123;</span><br><span class="line">        rangeCheckForAdd(index);</span><br><span class="line">        checkForComodification();</span><br><span class="line">        parent.add(parentOffset + index, e);</span><br><span class="line">        <span class="keyword">this</span>.modCount = parent.modCount;</span><br><span class="line">        <span class="keyword">this</span>.size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        rangeCheck(index);</span><br><span class="line">        checkForComodification();</span><br><span class="line">        E result = parent.remove(parentOffset + index);</span><br><span class="line">        <span class="keyword">this</span>.modCount = parent.modCount;</span><br><span class="line">        <span class="keyword">this</span>.size--;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">removeRange</span><span class="params">(<span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex)</span> </span>&#123;</span><br><span class="line">        checkForComodification();</span><br><span class="line">        parent.removeRange(parentOffset + fromIndex,</span><br><span class="line">                           parentOffset + toIndex);</span><br><span class="line">        <span class="keyword">this</span>.modCount = parent.modCount;</span><br><span class="line">        <span class="keyword">this</span>.size -= toIndex - fromIndex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> addAll(<span class="keyword">this</span>.size, c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(<span class="keyword">int</span> index, Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">        rangeCheckForAdd(index);</span><br><span class="line">        <span class="keyword">int</span> cSize = c.size();</span><br><span class="line">        <span class="keyword">if</span> (cSize==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        checkForComodification();</span><br><span class="line">        parent.addAll(parentOffset + index, c);</span><br><span class="line">        <span class="keyword">this</span>.modCount = parent.modCount;</span><br><span class="line">        <span class="keyword">this</span>.size += cSize;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> listIterator();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListIterator&lt;E&gt; <span class="title">listIterator</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        checkForComodification();</span><br><span class="line">        rangeCheckForAdd(index);</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> offset = <span class="keyword">this</span>.offset;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ListIterator&lt;E&gt;() &#123;</span><br><span class="line">            <span class="keyword">int</span> cursor = index;</span><br><span class="line">            <span class="keyword">int</span> lastRet = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> expectedModCount = ArrayList.<span class="keyword">this</span>.modCount;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> cursor != SubList.<span class="keyword">this</span>.size;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">            <span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                checkForComodification();</span><br><span class="line">                <span class="keyword">int</span> i = cursor;</span><br><span class="line">                <span class="keyword">if</span> (i &gt;= SubList.<span class="keyword">this</span>.size)</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">                Object[] elementData = ArrayList.<span class="keyword">this</span>.elementData;</span><br><span class="line">                <span class="keyword">if</span> (offset + i &gt;= elementData.length)</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">                cursor = i + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">return</span> (E) elementData[offset + (lastRet = i)];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPrevious</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> cursor != <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">            <span class="function"><span class="keyword">public</span> E <span class="title">previous</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                checkForComodification();</span><br><span class="line">                <span class="keyword">int</span> i = cursor - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (i &lt; <span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">                Object[] elementData = ArrayList.<span class="keyword">this</span>.elementData;</span><br><span class="line">                <span class="keyword">if</span> (offset + i &gt;= elementData.length)</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">                cursor = i;</span><br><span class="line">                <span class="keyword">return</span> (E) elementData[offset + (lastRet = i)];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">forEachRemaining</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> E&gt; consumer)</span> </span>&#123;</span><br><span class="line">                Objects.requireNonNull(consumer);</span><br><span class="line">                <span class="keyword">final</span> <span class="keyword">int</span> size = SubList.<span class="keyword">this</span>.size;</span><br><span class="line">                <span class="keyword">int</span> i = cursor;</span><br><span class="line">                <span class="keyword">if</span> (i &gt;= size) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">final</span> Object[] elementData = ArrayList.<span class="keyword">this</span>.elementData;</span><br><span class="line">                <span class="keyword">if</span> (offset + i &gt;= elementData.length) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">while</span> (i != size &amp;&amp; modCount == expectedModCount) &#123;</span><br><span class="line">                    consumer.accept((E) elementData[offset + (i++)]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// update once at end of iteration to reduce heap write traffic</span></span><br><span class="line">                lastRet = cursor = i;</span><br><span class="line">                checkForComodification();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nextIndex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> cursor;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">previousIndex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> cursor - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</span><br><span class="line">                checkForComodification();</span><br><span class="line"></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    SubList.<span class="keyword">this</span>.remove(lastRet);</span><br><span class="line">                    cursor = lastRet;</span><br><span class="line">                    lastRet = -<span class="number">1</span>;</span><br><span class="line">                    expectedModCount = ArrayList.<span class="keyword">this</span>.modCount;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</span><br><span class="line">                checkForComodification();</span><br><span class="line"></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    ArrayList.<span class="keyword">this</span>.set(offset + lastRet, e);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">                checkForComodification();</span><br><span class="line"></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">int</span> i = cursor;</span><br><span class="line">                    SubList.<span class="keyword">this</span>.add(i, e);</span><br><span class="line">                    cursor = i + <span class="number">1</span>;</span><br><span class="line">                    lastRet = -<span class="number">1</span>;</span><br><span class="line">                    expectedModCount = ArrayList.<span class="keyword">this</span>.modCount;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (expectedModCount != ArrayList.<span class="keyword">this</span>.modCount)</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;E&gt; <span class="title">subList</span><span class="params">(<span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex)</span> </span>&#123;</span><br><span class="line">        subListRangeCheck(fromIndex, toIndex, size);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SubList(<span class="keyword">this</span>, offset, fromIndex, toIndex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rangeCheck</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= <span class="keyword">this</span>.size)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(outOfBoundsMsg(index));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rangeCheckForAdd</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; <span class="keyword">this</span>.size)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(outOfBoundsMsg(index));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">outOfBoundsMsg</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Index: "</span>+index+<span class="string">", Size: "</span>+<span class="keyword">this</span>.size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ArrayList.<span class="keyword">this</span>.modCount != <span class="keyword">this</span>.modCount)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Spliterator&lt;E&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ArrayListSpliterator&lt;E&gt;(ArrayList.<span class="keyword">this</span>, offset,</span><br><span class="line">                                           offset + <span class="keyword">this</span>.size, <span class="keyword">this</span>.modCount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到它是通过偏移来实现,所有的操作还是使用<code>parent</code>父列表</p>
+</details>
+
+<blockquote>
+<p><code>subList</code>方法在<code>List</code>接口中,而<code>Set</code>、<code>Map</code>接口中并没有这个功能</p>
+<p>不过对于有序集和映射,可以使用排序顺序而不是元素位置建立子范围</p>
+</blockquote>
+<p><code>SoredSet</code>接口声明了三个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">SortedSet&lt;E&gt; <span class="title">subSet</span><span class="params">(E from, E to)</span></span></span><br><span class="line"><span class="function">SortedSet&lt;E&gt; <span class="title">headSet</span><span class="params">(E to)</span></span></span><br><span class="line"><span class="function">SortedSet&lt;E&gt; <span class="title">tailSet</span><span class="params">(E from)</span></span></span><br></pre></td></tr></table></figure>
+<p>这些方法将返回大于等于<code>from</code>且小于<code>to</code>的所有元素子集.有序映射也有类似的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">SortedMap&lt;K, V&gt; <span class="title">subMap</span><span class="params">(K from, K to)</span></span></span><br><span class="line"><span class="function">SortedMap&lt;K, V&gt; <span class="title">headMap</span><span class="params">(K to)</span></span></span><br><span class="line"><span class="function">SortedMap&lt;K, V&gt; <span class="title">tailMap</span><span class="params">(K from)</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在JDK1.6引入了<code>NavigableSet</code>和<code>NavigableMap</code>接口赋予子范围操作更多的控制能力.可以指定是否包含边界</p>
+</blockquote>
+<details>
+    <summary>NavigableSet、NavigableMap接口详情</summary>
+
+<p><code>NavigableSet</code>接口   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">NavigableSet&lt;E&gt; <span class="title">subSet</span> <span class="params">(E from, <span class="keyword">boolean</span> fromlnclusive, E to, <span class="keyword">boolean</span> tolnclusive)</span></span></span><br><span class="line"><span class="function">NavigableSet&lt;E&gt; <span class="title">headSet</span><span class="params">(E to, <span class="keyword">boolean</span> tolnclusive)</span></span></span><br><span class="line"><span class="function">Navigab1eSet&lt;E&gt; <span class="title">tailSet</span><span class="params">(E from, <span class="keyword">boolean</span> fromlnclusive)</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>NavigableMap</code>接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">NavigableMap&lt;K,V&gt; <span class="title">subMap</span> <span class="params">(K from, <span class="keyword">boolean</span> fromlnclusive, K to, <span class="keyword">boolean</span> tolnclusive)</span></span></span><br><span class="line"><span class="function">NavigableMap&lt;K,V&gt; <span class="title">headMap</span><span class="params">(K to, <span class="keyword">boolean</span> tolnclusive)</span></span></span><br><span class="line"><span class="function">Navigab1eMap&lt;K,V&gt; <span class="title">tailMap</span><span class="params">(K from, <span class="keyword">boolean</span> fromlnclusive)</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>NavigableSet</code>实现了<code>SortedSet</code>接口,<code>NavigableMap</code>接口也是一样实现了<code>SortedMap</code>接口</p>
+</blockquote>
+</details>
+
+<p><a href="https://twodam.net/view-in-java-collection-framework" target="_blank" rel="noopener">参考</a></p>
+<h3 id="不可修改视图"><a href="#不可修改视图" class="headerlink" title="不可修改视图"></a>不可修改视图</h3><p><code>Collections</code>还有几个方法用来产生集合的不可修改视图</p>
+<p>这些视图对现有集合增加了一个运行时的检查.如果发现试图对集合进行修改,就抛出异常,同时这个集合将保持未修改的状态</p>
+<blockquote>
+<p>主要用途是: 可以查看某个集合内容,但是又能避免这个集合被修改,相当于只读</p>
+</blockquote>
+<p>可以使用过下面8种方法获得不可修改视图</p>
+<ul>
+<li>unmodifiableCollection</li>
+<li>unmodifiableSet</li>
+<li>unmodifiableSortedSet</li>
+<li>unmodifiableNavigableSet</li>
+<li>unmodifiableList</li>
+<li>unmodifiableMap</li>
+<li>unmodifiableSortedMap</li>
+<li>unmodifiableNavigableMap</li>
+</ul>
+<p>每个方法都定义与一个接口.例如<code>Collections.unmodifiableList</code>定义的是<code>List</code>接口.可以与<code>ArrayList</code>、<code>LinkedList</code>或者任何实现了<code>List</code>接口的其他类一起协同工作</p>
+<p>例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list             = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>));</span><br><span class="line">List&lt;String&gt; unmodifiableList = Collections.unmodifiableList(list);</span><br><span class="line"><span class="comment">// unmodifiableList.add("f");  // 错误,抛出UnsupportedOperationException异常</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Collections.unmodifiableList</code>方法将返回一个实现<code>List</code>接口的类对象(视图对象)</p>
+<p>可以从<code>unmodifiableList</code>这个视图对象中获取元素,但是不能修改.</p>
+<p><strong>因为所有的修改类型的方法以及被重新定义为一个抛出<code>UnsupportedOperationException</code>的异常,而不是将调用传递到底层集合(在这里指<code>list</code>)</strong></p>
+<details>
+<summary>查看UnmodifiableList源码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">UnmodifiableList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">UnmodifiableCollection</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">                                  <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">283967356065247728L</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> List&lt;? extends E&gt; list;</span><br><span class="line"></span><br><span class="line">        UnmodifiableList(List&lt;? extends E&gt; list) &#123;</span><br><span class="line">            <span class="keyword">super</span>(list);</span><br><span class="line">            <span class="keyword">this</span>.list = list;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;<span class="keyword">return</span> o == <span class="keyword">this</span> || list.equals(o);&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span>           </span>&#123;<span class="keyword">return</span> list.hashCode();&#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;<span class="keyword">return</span> list.get(index);&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(Object o)</span>            </span>&#123;<span class="keyword">return</span> list.indexOf(o);&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lastIndexOf</span><span class="params">(Object o)</span>        </span>&#123;<span class="keyword">return</span> list.lastIndexOf(o);&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(<span class="keyword">int</span> index, Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">replaceAll</span><span class="params">(UnaryOperator&lt;E&gt; operator)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparator&lt;? <span class="keyword">super</span> E&gt; c)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> ListIterator&lt;E&gt; <span class="title">listIterator</span><span class="params">()</span>   </span>&#123;<span class="keyword">return</span> listIterator(<span class="number">0</span>);&#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> ListIterator&lt;E&gt; <span class="title">listIterator</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ListIterator&lt;E&gt;() &#123;</span><br><span class="line">                <span class="keyword">private</span> <span class="keyword">final</span> ListIterator&lt;? extends E&gt; i</span><br><span class="line">                    = list.listIterator(index);</span><br><span class="line"></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span>     </span>&#123;<span class="keyword">return</span> i.hasNext();&#125;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span>              </span>&#123;<span class="keyword">return</span> i.next();&#125;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPrevious</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> i.hasPrevious();&#125;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> E <span class="title">previous</span><span class="params">()</span>          </span>&#123;<span class="keyword">return</span> i.previous();&#125;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nextIndex</span><span class="params">()</span>       </span>&#123;<span class="keyword">return</span> i.nextIndex();&#125;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">previousIndex</span><span class="params">()</span>   </span>&#123;<span class="keyword">return</span> i.previousIndex();&#125;</span><br><span class="line"></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">forEachRemaining</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> E&gt; action)</span> </span>&#123;</span><br><span class="line">                    i.forEachRemaining(action);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> List&lt;E&gt; <span class="title">subList</span><span class="params">(<span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> UnmodifiableList&lt;&gt;(list.subList(fromIndex, toIndex));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> Object <span class="title">readResolve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (list <span class="keyword">instanceof</span> RandomAccess</span><br><span class="line">                    ? <span class="keyword">new</span> UnmodifiableRandomAccessList&lt;&gt;(list)</span><br><span class="line">                    : <span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<blockquote>
+<p>不可修改视图并不是集合本身不可修改.仍然可以通过集合原始的引用(在这里值<code>list</code>)对集合进行修改.同时,原来引用集合的元素发生变化,那么视图对象的元素也会随之变化</p>
+</blockquote>
+<p><a href="https://www.jianshu.com/p/462a56f7e349" target="_blank" rel="noopener">参考</a></p>
+<h3 id="同步视图"><a href="#同步视图" class="headerlink" title="同步视图"></a>同步视图</h3><p>如果由多个线程访问集合,就必须确保集合不会被意外的破坏</p>
+<p>例如:如果一个线程试图将元素添加到<code>HashMap</code>中,同时另外一个线程正在对<code>HashMap</code>进行扩容,那么结果将是灾难性的</p>
+<p>我们可以使用视图机制来确保常规集合的线程安全,而不是实现线程安全的集合类</p>
+<p>例如,<code>Collections</code>类的静态<code>synchronizedMap</code>方法可以将任何一个映射表转换成具有同步访问方法的<code>Map</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; synchronizedMap = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;&gt;());</span><br></pre></td></tr></table></figure>
+
+<p>现在,就可以由多线程访问<code>map</code>对象了.像<code>get</code>和<code>put</code>这类方法都是同步操作的,即在另一个线程调用另一个方法之前,刚才的方法调用必须彻底完成</p>
+<details>
+<summary>查看SynchronizedMap源码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SynchronizedMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1978198479659022715L</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;K,V&gt; m;     <span class="comment">// Backing Map</span></span><br><span class="line">        <span class="keyword">final</span> Object      mutex;        <span class="comment">// Object on which to synchronize</span></span><br><span class="line"></span><br><span class="line">        SynchronizedMap(Map&lt;K,V&gt; m) &#123;</span><br><span class="line">            <span class="keyword">this</span>.m = Objects.requireNonNull(m);</span><br><span class="line">            mutex = <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        SynchronizedMap(Map&lt;K,V&gt; m, Object mutex) &#123;</span><br><span class="line">            <span class="keyword">this</span>.m = m;</span><br><span class="line">            <span class="keyword">this</span>.mutex = mutex;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.size();&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.isEmpty();&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.containsKey(key);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.containsValue(value);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.get(key);&#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.put(key, value);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">remove</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.remove(key);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putAll</span><span class="params">(Map&lt;? extends K, ? extends V&gt; map)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;m.putAll(map);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;m.clear();&#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">transient</span> Set&lt;K&gt; keySet;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">transient</span> Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">transient</span> Collection&lt;V&gt; values;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;</span><br><span class="line">                <span class="keyword">if</span> (keySet==<span class="keyword">null</span>)</span><br><span class="line">                    keySet = <span class="keyword">new</span> SynchronizedSet&lt;&gt;(m.keySet(), mutex);</span><br><span class="line">                <span class="keyword">return</span> keySet;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet() &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;</span><br><span class="line">                <span class="keyword">if</span> (entrySet==<span class="keyword">null</span>)</span><br><span class="line">                    entrySet = <span class="keyword">new</span> SynchronizedSet&lt;&gt;(m.entrySet(), mutex);</span><br><span class="line">                <span class="keyword">return</span> entrySet;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;</span><br><span class="line">                <span class="keyword">if</span> (values==<span class="keyword">null</span>)</span><br><span class="line">                    values = <span class="keyword">new</span> SynchronizedCollection&lt;&gt;(m.values(), mutex);</span><br><span class="line">                <span class="keyword">return</span> values;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span> == o)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.equals(o);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.hashCode();&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.toString();&#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Override default methods in Map</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">getOrDefault</span><span class="params">(Object k, V defaultValue)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.getOrDefault(k, defaultValue);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(BiConsumer&lt;? <span class="keyword">super</span> K, ? <span class="keyword">super</span> V&gt; action)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;m.forEach(action);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">replaceAll</span><span class="params">(BiFunction&lt;? <span class="keyword">super</span> K, ? <span class="keyword">super</span> V, ? extends V&gt; function)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;m.replaceAll(function);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">putIfAbsent</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.putIfAbsent(key, value);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object key, Object value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.remove(key, value);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">replace</span><span class="params">(K key, V oldValue, V newValue)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.replace(key, oldValue, newValue);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">replace</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.replace(key, value);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">computeIfAbsent</span><span class="params">(K key,</span></span></span><br><span class="line"><span class="function"><span class="params">                Function&lt;? <span class="keyword">super</span> K, ? extends V&gt; mappingFunction)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.computeIfAbsent(key, mappingFunction);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">computeIfPresent</span><span class="params">(K key,</span></span></span><br><span class="line"><span class="function"><span class="params">                BiFunction&lt;? <span class="keyword">super</span> K, ? <span class="keyword">super</span> V, ? extends V&gt; remappingFunction)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.computeIfPresent(key, remappingFunction);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">compute</span><span class="params">(K key,</span></span></span><br><span class="line"><span class="function"><span class="params">                BiFunction&lt;? <span class="keyword">super</span> K, ? <span class="keyword">super</span> V, ? extends V&gt; remappingFunction)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.compute(key, remappingFunction);&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> V <span class="title">merge</span><span class="params">(K key, V value,</span></span></span><br><span class="line"><span class="function"><span class="params">                BiFunction&lt;? <span class="keyword">super</span> V, ? <span class="keyword">super</span> V, ? extends V&gt; remappingFunction)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;<span class="keyword">return</span> m.merge(key, value, remappingFunction);&#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">writeObject</span><span class="params">(ObjectOutputStream s)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mutex) &#123;s.defaultWriteObject();&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>底层的方法都加上了<code>synchronized</code>.实际方法还是调用底层对象<code>m</code></p>
+</blockquote>
+</details>
+
+<p>同样获得同步视图也是8种方法</p>
+<ul>
+<li>synchronizedCollection</li>
+<li>synchronizedSet</li>
+<li>synchronizedSortedSet</li>
+<li>synchronizedNavigableSet</li>
+<li>synchronizedList</li>
+<li>synchronizedMap</li>
+<li>synchronizedSortedMap</li>
+<li>synchronizedNavigableMap</li>
+</ul>
+<h3 id="检查视图"><a href="#检查视图" class="headerlink" title="检查视图"></a>检查视图</h3><p><strong>“受査”视图用来对泛型类型发生问题时提供调试支持</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;String&gt; list = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">List rawList = list;</span><br><span class="line">rawList.add(LocalDate.now());</span><br><span class="line">list.getFirst();    <span class="comment">// 抛出异常 java.lang.ClassCastException</span></span><br></pre></td></tr></table></figure>
+
+<p>这个错误的<code>add</code>,在运行时检测不到.相反,只要调用<code>get</code>方法,将结果转化为<code>String</code>时,就会抛出<code>ClassCastException</code>异常</p>
+<p>而受检视图可以探测到这类问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringList = Collections.checkedList(<span class="keyword">new</span> LinkedList&lt;&gt;(), String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">rawList = stringList;</span><br><span class="line">rawList.add(LocalDate.now());   <span class="comment">//在添加时即可探测类型问题,而不是等到获取时</span></span><br></pre></td></tr></table></figure>
+
+<p>视图的<code>add</code>方法将检测插人的对象是否属于给定的类.如果不属于给定的类,就立即抛出一个 <code>ClassCastException</code>.这样做的好处是错误可以在正确的位置得以报高</p>
+<details>
+<summary>查看解析</summary>
+
+<p>视图对象<code>CheckedList</code>再添加时调用<code>typeCheck</code>方法来对类型做检查</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    list.add(index, typeCheck(element));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体类型检查代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">E <span class="title">typeCheck</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (o != <span class="keyword">null</span> &amp;&amp; !type.isInstance(o))</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ClassCastException(badElementMsg(o));</span><br><span class="line">    <span class="keyword">return</span> (E) o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<p>有9个方法可以得到受查视图</p>
+<ul>
+<li>checkedCollection</li>
+<li>checkedQueue</li>
+<li>checkedSet</li>
+<li>checkedSortedSet</li>
+<li>checkedNavigableSet</li>
+<li>checkedList</li>
+<li>checkedMap</li>
+<li>checkedSortedMap</li>
+<li>checkedNavigableMap</li>
+</ul>
+<blockquote>
+<p>受查视图受限于虚拟机可以运行的运行时检查.例如,对于<code>ArrayList&lt;Pair&lt;String&gt;</code>,由于虚拟机有一个单独的”原始”Pair类,所以,无法阻止插入<code>Pair&lt;Date&gt;</code></p>
+</blockquote>
+<h3 id="不可变视图、同步视图、检查视图注意点"><a href="#不可变视图、同步视图、检查视图注意点" class="headerlink" title="不可变视图、同步视图、检查视图注意点"></a>不可变视图、同步视图、检查视图注意点</h3><blockquote>
+<p><code>unmodifiableCollection</code>、<code>synchronizedCollection</code>、<code>checkedCollection</code>这几个方法返回都是视图,但是它们的<code>equals</code>方法不调用底层集合的<code>equals</code>的方法</p>
+<p>相反,它继承了<code>Object</code>类的<code>equals</code>方法,这个方法只是检测两个对象是否是同一个对象(也就是直接对比引用的地址,使用<code>==</code>)</p>
+<p>然而<code>unmodifiableSet</code>和<code>unmodifiableList</code>却使用底层集合的<code>equals</code>方法和<code>hashCode</code></p>
+</blockquote>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="排序与混排"><a href="#排序与混排" class="headerlink" title="排序与混排"></a>排序与混排</h3><ul>
+<li><p>排序</p>
+<p>  <strong><code>Collections</code>类中的<code>sort</code>方法可以对实现了<code>List</code>接口的集合进行排序</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Employee&gt; linkedList = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">linkedList.add((Employee.of(<span class="string">"li"</span>, <span class="number">10000</span>d, LocalDate.of(<span class="number">1996</span>, <span class="number">2</span>, <span class="number">1</span>))));</span><br><span class="line">linkedList.add((Employee.of(<span class="string">"zhang"</span>, <span class="number">9500</span>d, LocalDate.of(<span class="number">1995</span>, <span class="number">1</span>, <span class="number">1</span>))));</span><br><span class="line">linkedList.add((Employee.of(<span class="string">"chen"</span>, <span class="number">10000</span>d, LocalDate.of(<span class="number">1996</span>, <span class="number">6</span>, <span class="number">4</span>))));</span><br><span class="line">linkedList.add((Employee.of(<span class="string">"wang"</span>, <span class="number">5000</span>d, LocalDate.of(<span class="number">1996</span>, <span class="number">6</span>, <span class="number">6</span>))));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据Comparable来排序</span></span><br><span class="line">Collections.sort(linkedList);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用<code>Collections.sort</code>方法必须要元素实现了<code>Comparable</code>接口才可以,否则的话则需要使用重载方法,传入<code>Comparator</code>对象</p>
+</blockquote>
+<p>  如果想采用其他方式排序(或者元素没有实现<code>Comparable</code>接口),可以使用<code>List</code>接口的<code>sort</code>方法并传入一个<code>Comparator</code>对象</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据工资自然排序</span></span><br><span class="line">linkedList.sort(Comparator.comparingDouble(Employee::getSalary));</span><br></pre></td></tr></table></figure>
+
+<p>  如果想按照降序排序,可以使用一种比较方便的静态方法<code>Collections.reverseOrder()</code></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 倒序排序</span></span><br><span class="line">linkedList.sort(Comparator.reverseOrder());</span><br></pre></td></tr></table></figure>
+
+<p>  或者使用<code>Comparator</code>类的<code>reversed</code>方法</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据生日倒序排序</span></span><br><span class="line">linkedList.sort(Comparator.comparing(Employee::getBirthday).reversed());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>混排</p>
+<p>  <strong><code>Collections</code>类中的<code>shuffle</code>方法,它能随机的混排列表中的元素顺序</strong></p>
+<blockquote>
+<p><strong>如果提供的列表没有实现<code>Randomaccess</code>接口,<code>shuffle</code>方法将元素复制到数组中,然后打乱数组元素的顺序,最后再将打乱顺序后的元素复制回列表</strong></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>要想在数组中查找一个对象,通常要一次访问数组中的每个元素,知道找到匹配的元素为止</p>
+<p>如果数组是有序的,就可以直接查看位于数组中间的元素,看一看是否大于要查看的元素</p>
+<p>如果是,用同样的方法在数组的前半部分继续查找;否则,同样的方法在数组的后半部分继续查找.这样就可以将查找范围缩减一半</p>
+<blockquote>
+<p><strong>要使用二分查找,首先数组必须是有序的(自然顺序,不可使用倒序),否则算法将返回错误的答案</strong></p>
+</blockquote>
+<p>例如,如果数组有1024个元素</p>
+<ul>
+<li><p>二分查找</p>
+<p>  可以在10次比较后定位所匹配的元素(或者可以确定在数组中不存在这样的元素)</p>
+</li>
+<li><p>线性查找</p>
+<p>  如果元素存在,平均需要512次比较;如果元素不存在需要1024次比较才可以确定</p>
+</li>
+</ul>
+<p><code>Collections</code>类的<code>binarySearch</code>方法实现了这个算法.(注意: 集合必须是要排好序的)</p>
+<p><strong>要想查找某个元素,必须提供一个实现<code>List</code>接口的集合,以及要查找的元素</strong></p>
+<p><strong>如果集合中的元素没有实现<code>Comparable</code>接口,就还要提供一个比较器对象(<code>Comparator</code>)</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(List&lt;? extends Comparable&lt;? <span class="keyword">super</span> T&gt;&gt; list, T key)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(List&lt;? extends T&gt; list, T key, Comparator&lt;? <span class="keyword">super</span> T&gt; c)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如果<code>binarySearch</code>方法<strong>返回的数值大于等于0,则表示匹配对象的索引</strong></p>
+<p><strong>如果返回负值,则表示没有匹配的元素.但是,可以利用返回值计算应该将<code>key</code>插入到集合的哪个位置,以保持集合的有序性</strong></p>
+<p><strong>插人的位置是<code>-i - 1</code>,调用<code>c.add(-i - 1, key)</code>将元素插入到正确位置</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="number">4</span>, <span class="number">5677</span>, <span class="number">888</span>, <span class="number">33123</span>, <span class="number">44</span>,<span class="number">44</span>, <span class="number">32</span>, <span class="number">45</span>, <span class="number">1</span>, <span class="number">4666</span>));</span><br><span class="line"><span class="comment">// 排序,自然顺序</span></span><br><span class="line">arrayList.sort(Comparator.naturalOrder());</span><br><span class="line"><span class="keyword">int</span> i = Collections.binarySearch(arrayList, <span class="number">55</span>);</span><br><span class="line"><span class="comment">// 没有找到元素</span></span><br><span class="line"><span class="keyword">if</span>(i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 将元素添加的list中</span></span><br><span class="line">    arrayList.add(-i - <span class="number">1</span>, <span class="number">55</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p><strong>集合必须使用自然排序,使用倒序的话查找数据将是错误的</strong></p>
+<p><strong>只有采用随机访问(实现了<code>RandomAccess</code>接口的类),二分查找才有意义.</strong></p>
+<p><strong>如果必须利用迭代方式一次次地遍历链表的一般元素来找到中间位置的元素,二分查找就完全失去了优势</strong></p>
+<p><strong>因此,如果为<code>binarySearch</code>算法提供一个链表,那么它将自动的变为线性查找</strong></p>
+<h3 id="简单算法"><a href="#简单算法" class="headerlink" title="简单算法"></a>简单算法</h3><p><code>Collections</code>中有许多简单且很有用的算法例如:</p>
+<ul>
+<li><p>fill</p>
+<p>  将列表中所有位置设置为相同的值</p>
+</li>
+<li><p>copy</p>
+<p>  原列表中的所有元素复制到目辱列表的相应位置上</p>
+</li>
+<li><p>addAll</p>
+<p>  将所有的值添加到集合中(追加元素)</p>
+</li>
+<li><p>reverse</p>
+<p>  逆置列表中元素的顺序</p>
+</li>
+<li><p>swap</p>
+<p>  交换给定偏移量的两个元素</p>
+</li>
+<li><p>disjoint</p>
+<p>  判断两个集合是否有不相同的元素</p>
+</li>
+<li><p>frequency</p>
+<p>  获取列表中指定元素相同的个数</p>
+</li>
+<li><p>indexOfSubList、lastIndexOfSubList</p>
+<p>  返回子集在列表中出现的索引第一次、最后一次出现的位置</p>
+</li>
+<li><p>rotate</p>
+<p>  旋转列表中的元素</p>
+</li>
+</ul>
+<h3 id="批操作"><a href="#批操作" class="headerlink" title="批操作"></a>批操作</h3><p>很多操作会”成批”复制或删除元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将从list1中删除list2中出现的所有元素 - 叉集</span></span><br><span class="line">List&lt;Integer&gt; list1 = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>));</span><br><span class="line">List&lt;Integer&gt; list2 = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>));</span><br><span class="line">list1.removeAll(list2);</span><br><span class="line">System.out.println(list1);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将从list1中保留list2中出现的所有元素 - 交集</span></span><br><span class="line">list1 = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>));</span><br><span class="line">list2 = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>));</span><br><span class="line">list1.retainAll(list2);</span><br><span class="line">System.out.println(list1);</span><br></pre></td></tr></table></figure>
+
+<h3 id="集合与数组的转换"><a href="#集合与数组的转换" class="headerlink" title="集合与数组的转换"></a>集合与数组的转换</h3><p>由于Java平台的大部分内容都是在集合框架创建之前设计的,所以,有时候需要在传统数组和比较现代的集合之间进行转换</p>
+<p>如果需要将一个数组转换为集合,<code>Arrays.asList</code>包装器可以达到这个目的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; hashSet = <span class="keyword">new</span> HashSet&lt;&gt;(Arrays.asList(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>));</span><br></pre></td></tr></table></figure>
+
+<p>而从集合得到数组会困难一些,当然可以使用<code>toArray</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; hashSet = <span class="keyword">new</span> HashSet&lt;&gt;(Arrays.asList(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>));</span><br><span class="line">Object[]  objects       = hashSet.toArray();                <span class="comment">// 结果是一个对象数组,不能改变它的类型</span></span><br><span class="line"><span class="comment">// String[]  objects       = (String[])hashSet.toArray();   // 错误,不能做强制类型转换</span></span><br></pre></td></tr></table></figure>
+
+<p><code>toArray</code>方法返回的数组是一个<code>Object[]</code>数组,不能改变它的类型.</p>
+<p>实际上,<em>必须使用<code>toArray</code>方法的一个重载方法,提供一个所需类型而且长度为0的数组*</em>,这样一来,返回的数组就会创建为相同的数组类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; hashSet = <span class="keyword">new</span> HashSet&lt;&gt;(Arrays.asList(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>));</span><br><span class="line">String[]  stringArray   = hashSet.toArray(<span class="keyword">new</span> String[<span class="number">0</span>]);</span><br><span class="line">System.out.println(Arrays.toString(stringArray));</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果愿意,还可以构造一个指定大小的数组</strong></p>
+<blockquote>
+<p>为什么不直接用一个<code>Class</code>对象(例如<code>String.class</code>)传递到<code>toArray</code>方法. </p>
+<p>原因是这个方法有”双重职责”,不仅要填充一个已有的数组(如果它足够长),还要创建一个新数组</p>
+<p>简单点说就是如果传入的数组长度够用(可以传入指定大小的数组)就不用创建,否则就需要创建新的数</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2020/06/23/test/" title="test" target="_blank" rel="external">http://yoursite.com/2020/06/23/test/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/27392" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/27392" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/06/23/test3/" title="test3"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/27392" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2019 - 2020 
+        
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">· 赣ICP备19004361号-1 </a>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

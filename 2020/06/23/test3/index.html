@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>test3 | Hexo</title>
+  <meta name="description" content="CentOS安装Nginx并配置HTTPS服务器环境: CentOS7 nginx版本: 1.16.0 安装Nginx安装依赖 安装nginx需要先将官网下载的源码进行编译,编译依赖gcc环境  script1yum install gcc-c++  2.PCRE(Perl Compatible Regular Expressions) 是一个Perl库,包括perl兼容的正则表达式库.nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="test3">
+<meta property="og:url" content="http://yoursite.com/2020/06/23/test3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CentOS安装Nginx并配置HTTPS服务器环境: CentOS7 nginx版本: 1.16.0 安装Nginx安装依赖 安装nginx需要先将官网下载的源码进行编译,编译依赖gcc环境  script1yum install gcc-c++  2.PCRE(Perl Compatible Regular Expressions) 是一个Perl库,包括perl兼容的正则表达式库.nginx">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-23T11:36:33.000Z">
+<meta property="article:modified_time" content="2020-06-30T11:06:46.763Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="nginx">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2020/06/23/test3/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/27392" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ChengDu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/27392" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringSecurity/" rel="tag">SpringSecurity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BA%90%E7%A0%81/" rel="tag">源码</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SpringSecurity/" style="font-size: 13px;">SpringSecurity</a> <a href="/tags/nginx/" style="font-size: 13px;">nginx</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 13px;">源码</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/30/JavaDate%E4%B8%8EJavaTime%E4%BA%92%E6%93%8D%E4%BD%9C/" class="title">JavaDate与JavaTime互操作</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-30T18:27:33.000Z" itemprop="datePublished">2020-06-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/30/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-30T11:06:46.763Z" itemprop="datePublished">2020-06-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/23/SpringSecurity%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B/" class="title">SpringSecurity认证流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-23T13:33:10.000Z" itemprop="datePublished">2020-06-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/nginx/">nginx</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/23/test3/" class="title">test3</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-23T11:36:33.000Z" itemprop="datePublished">2020-06-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/java/">java</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/06/23/test/" class="title">test</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-23T10:41:13.000Z" itemprop="datePublished">2020-06-23</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CentOS安装Nginx并配置HTTPS"><span class="toc-number">1.</span> <span class="toc-text">CentOS安装Nginx并配置HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Nginx"><span class="toc-number">1.1.</span> <span class="toc-text">安装Nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖"><span class="toc-number">1.1.1.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">1.1.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译安装"><span class="toc-number">1.1.3.</span> <span class="toc-text">编译安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置开机自动"><span class="toc-number">1.1.4.</span> <span class="toc-text">设置开机自动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令详情"><span class="toc-number">1.1.5.</span> <span class="toc-text">命令详情</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-number">1.1.6.</span> <span class="toc-text">参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置HTTPS"><span class="toc-number">1.2.</span> <span class="toc-text">配置HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生产HTTPS证书"><span class="toc-number">1.2.1.</span> <span class="toc-text">生产HTTPS证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将证书配置到Nginx"><span class="toc-number">1.2.2.</span> <span class="toc-text">将证书配置到Nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-test3" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      test3
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/06/23/test3/" class="article-date">
+	  <time datetime="2020-06-23T11:36:33.000Z" itemprop="datePublished">2020-06-23</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/nginx/">nginx</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/nginx/" rel="tag">nginx</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/23/test3/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 4(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="CentOS安装Nginx并配置HTTPS"><a href="#CentOS安装Nginx并配置HTTPS" class="headerlink" title="CentOS安装Nginx并配置HTTPS"></a>CentOS安装Nginx并配置HTTPS</h1><p>服务器环境: CentOS7</p>
+<p>nginx版本: 1.16.0</p>
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><ol>
+<li>安装<code>nginx</code>需要先将官网下载的源码进行编译,编译依赖<code>gcc</code>环境</li>
+</ol>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br></pre></td></tr></table></figure>
+
+<p>2.PCRE(Perl Compatible Regular Expressions) 是一个<code>Perl</code>库,包括<code>perl</code>兼容的正则表达式库.<br><code>nginx</code>的<code>http</code>模块使用<code>pcre</code>来解析正则表达式,所以需要安装<code>pcre</code>库,<code>pcre-devel</code>是使用<code>pcre</code>开发的一个二次开发库,<code>nginx</code>也需要此库</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y pcre pcre-devel`</span><br></pre></td></tr></table></figure>
+
+<p>3.<code>zlib</code>库提供了很多种压缩和解压缩的方式,nginx使用<code>zlib</code>对<code>http</code>包的内容进行<code>gzip</code></p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y zlib zlib-devel</span><br></pre></td></tr></table></figure>
+
+<p>4.<code>OpenSSL</code>是一个强大的安全套接字层密码库,囊括主要的密码算法、常用的密钥和证书封装管理功能及<code>SSL</code>协议,并提供丰富的应用程序供测试或其它目的使用.</p>
+<p><code>nginx</code>不仅支持<code>http</code>协议,还支持<code>https</code>(即在ssl协议上传输http)</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">yum install -y openssl openssl-devel</span><br><span class="line">```  </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## 下载</span></span></span><br><span class="line">    </span><br><span class="line">[Nginx 官网](https://nginx.org/en/download.html)</span><br><span class="line"></span><br><span class="line">```shell script</span><br><span class="line">wget -c https://nginx.org/download/nginx-1.16.0.tar.gz</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">&lt;details&gt;</span><br><span class="line">    &lt;summary&gt;参数含义&lt;/summary&gt;</span><br><span class="line">    </span><br><span class="line">- `-c` 断点续传</span><br><span class="line"></span><br><span class="line">&lt;/details&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## 解压</span></span></span><br><span class="line"></span><br><span class="line">```shell script</span><br><span class="line">tar -zxvf nginx-1.16.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<details>
+    <summary>参数含义</summary>
+
+<ul>
+<li><p><code>-z</code> :是否同时具有gzip的属性，即是否需要用gzip压缩</p>
+</li>
+<li><p><code>-x</code> :从归档文件中解析文件</p>
+</li>
+<li><p><code>-v</code> :压缩过程中显示文件</p>
+</li>
+<li><p><code>-f</code> :使用文件名</p>
+</li>
+</ul>
+</details>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>进入文件</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd nginx-1.16.0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>配置文件信息</p>
+<ul>
+<li><p>普通配置不需要配置HTTPS</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果需要配置HTTPS则执行</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-http_ssl_module</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置开机自动"><a href="#设置开机自动" class="headerlink" title="设置开机自动"></a>设置开机自动</h3><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /lib/systemd/system</span><br><span class="line"></span><br><span class="line">vim nginx.service</span><br></pre></td></tr></table></figure>
+
+<p>将以下文本复进文件中保存即刻</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description&#x3D;nginx</span><br><span class="line">After&#x3D;network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;forking</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx</span><br><span class="line">ExecReload&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s reload</span><br><span class="line">ExecStop&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s quit</span><br><span class="line">PrivateTmp&#x3D;true</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令详情"><a href="#命令详情" class="headerlink" title="命令详情"></a>命令详情</h3><table>
+<thead>
+<tr>
+<th>描述</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>设置开机自启动</td>
+<td><code>systemctl enable nginx.service</code></td>
+</tr>
+<tr>
+<td>停止开机自启动</td>
+<td><code>systemctl disable nginx.service</code></td>
+</tr>
+<tr>
+<td>启动Nginx服务</td>
+<td><code>systemctl start nginx.service</code></td>
+</tr>
+<tr>
+<td>停止Nginx服务</td>
+<td><code>systemctl stop nginx.service</code></td>
+</tr>
+<tr>
+<td>重新启动服务</td>
+<td><code>systemctl restart nginx.service</code></td>
+</tr>
+<tr>
+<td>查看服务当前状态</td>
+<td><code>systemctl status nginx.service</code></td>
+</tr>
+</tbody></table>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="https://www.jianshu.com/p/5a57d1bea859" target="_blank" rel="noopener">centos安装部署Nginx,并配置https</a></p>
+<p><a href="https://www.cnblogs.com/piscesLoveCc/p/5867900.html" target="_blank" rel="noopener">Nginx+Center OS 7.2 开机启动设置</a></p>
+<h2 id="配置HTTPS"><a href="#配置HTTPS" class="headerlink" title="配置HTTPS"></a>配置HTTPS</h2><p>HTTPS呢使用<a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a>的免费证书</p>
+<p>借助<a href="https://github.com/Neilpang/acme.sh" target="_blank" rel="noopener"><code>acme.sh</code></a>这个项目来帮助我们生产证书</p>
+<h3 id="生产HTTPS证书"><a href="#生产HTTPS证书" class="headerlink" title="生产HTTPS证书"></a>生产HTTPS证书</h3><p>安装 acme.sh</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://get.acme.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p>创建一个alias方便使用(可不用)</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias acme.sh=~/.acme.sh/acme.sh`</span><br></pre></td></tr></table></figure>
+
+<p>配置DNS,这里我使用的是阿里云的,因为我的域名本身就是在阿里云</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export Ali_Key="xxxxxxxxxxx"</span><br><span class="line"></span><br><span class="line">export Ali_Secret="xxxxxxxxxxxxxxxxxxx"</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">生成通配符证书</span><br><span class="line"></span><br><span class="line">```shell script</span><br><span class="line">acme.sh --issue --dns dns_ali -d 你的主域名 -d *.你的主域名</span><br></pre></td></tr></table></figure>
+
+<details>
+    <summary>具体例子</summary>
+
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --issue --dns dns_ali -d haohaoli.cn -d *.haohaoli.cn</span><br></pre></td></tr></table></figure>
+</details>
+
+<h3 id="将证书配置到Nginx"><a href="#将证书配置到Nginx" class="headerlink" title="将证书配置到Nginx"></a>将证书配置到Nginx</h3><p>移动证书</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建证书存放的位置</span></span><br><span class="line">mkdir /usr/local/nginx/ssl</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 移动证书</span></span><br><span class="line">acme.sh --install-cert -d 你的主域名 \</span><br><span class="line">--key-file       /usr/local/nginx/ssl/你的主域名.key  \</span><br><span class="line">--fullchain-file /usr/local/nginx/ssl/fullchain.cer \</span><br><span class="line">--reloadcmd     "systemctl reload nginx.service"</span><br></pre></td></tr></table></figure>
+
+<details>
+    <summary>具体例子</summary>
+
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --install-cert -d haohaoli.cn \</span><br><span class="line">--key-file       /usr/local/nginx/ssl/haohaoli.key  \</span><br><span class="line">--fullchain-file /usr/local/nginx/ssl/fullchain.cer \</span><br><span class="line">--reloadcmd     "systemctl reload nginx.service"</span><br></pre></td></tr></table></figure>
+</details>
+
+<p>修改nginx配置文件</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p>找到server为443端口位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       443 ssl;</span><br><span class="line">    server_name  www域名 你的主域名;</span><br><span class="line"></span><br><span class="line">    ssl_certificate      &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;ssl&#x2F;fullchain.cer;</span><br><span class="line">    ssl_certificate_key  &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;ssl&#x2F;你的主域名.key;</span><br><span class="line"></span><br><span class="line">    ssl_session_cache    shared:SSL:1m;</span><br><span class="line">    ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">    ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">    ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<details>
+    <summary>例如</summary>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       443 ssl;</span><br><span class="line">    server_name  www.haohaoli.cn haohaoli.cn;</span><br><span class="line"></span><br><span class="line">    ssl_certificate      &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;ssl&#x2F;fullchain.cer;</span><br><span class="line">    ssl_certificate_key  &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;ssl&#x2F;haohaoli.cn.key;</span><br><span class="line"></span><br><span class="line">    ssl_session_cache    shared:SSL:1m;</span><br><span class="line">    ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">    ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">    ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+
+<p>配置http请求转发为https请求,在<code>server</code>为80的<code>server_name</code>下添加:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return       301 https:&#x2F;&#x2F;$server_name$request_uri;</span><br></pre></td></tr></table></figure>
+
+<p>最后重启加载nginx配置文件</p>
+<pre><code class="shell">systemctl reload nginx.service</code></pre>
+<h3 id="参考资料-1"><a href="#参考资料-1" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="https://www.cnblogs.com/esofar/p/9291685.html" target="_blank" rel="noopener">快速签发 Let’s Encrypt 证书指南</a></p>
+<p><a href="https://my.oschina.net/u/3042999/blog/1858891" target="_blank" rel="noopener">利用 acme.sh 获取网站证书并配置https访问</a></p>
+<p><a href="https://github.com/Neilpang/acme.sh" target="_blank" rel="noopener">acme.sh</a></p>
+<p><a href="https://github.com/Neilpang/acme.sh/wiki/dnsapi" target="_blank" rel="noopener">acme.sh-DNS API</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2020/06/23/test3/" title="test3" target="_blank" rel="external">http://yoursite.com/2020/06/23/test3/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/27392" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/27392" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/06/23/SpringSecurity%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B/" title="SpringSecurity认证流程"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/06/23/test/" title="test"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/27392" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2019 - 2020 
+        
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">· 赣ICP备19004361号-1 </a>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
